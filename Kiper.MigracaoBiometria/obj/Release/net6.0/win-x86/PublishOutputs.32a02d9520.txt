@@ -1,0 +1,3 @@
+C:\Users\Kiper\Documents\BioMig2\Kiper.MigracaoBiometria.pdb
+C:\Users\Kiper\Documents\BioMig2\e_sqlite3.dll
+C:\Users\Kiper\Documents\BioMig2\Kiper.MigracaoBiometria.exe

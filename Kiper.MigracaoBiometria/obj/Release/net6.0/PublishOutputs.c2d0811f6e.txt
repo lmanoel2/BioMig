@@ -1,0 +1,6 @@
+C:\Users\Kiper\Documents\Kiper.MigracaoBiometria.exe
+C:\Users\Kiper\Documents\Kiper.MigracaoBiometria.dll
+C:\Users\Kiper\Documents\Kiper.MigracaoBiometria.deps.json
+C:\Users\Kiper\Documents\Kiper.MigracaoBiometria.runtimeconfig.json
+C:\Users\Kiper\Documents\Kiper.MigracaoBiometria.pdb
+C:\Users\Kiper\Documents\Newtonsoft.Json.dll
