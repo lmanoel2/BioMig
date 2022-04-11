@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using ssh;
 using banco_de_dados;
+using Kiper.MigracaoBiometria.Autenticacao;
 
 namespace Kiper.MigracaoBiometria
 {
@@ -18,20 +19,17 @@ namespace Kiper.MigracaoBiometria
 |  .  \  |  | |  |      |  |____ |  |\  \----.   |  |_)  | |  | |  `--'  | |  |  |  | |  | |  |__| | 
 |__|\__\ |__| | _|      |_______|| _| `._____|   |______/  |__|  \______/  |__|  |__| |__|  \______|";
 
-            //string texto = "Kiper BioMig";
 
+            Login login = new Login();
             Console.WriteLine(texto);
-
             Console.WriteLine("-----------------------------------");
+
             Console.Write("Usuario Monitoring: ");
             string? username = Console.ReadLine();
-            //string? username = "manoel.sousa@portergroup.com.br";
 
-            Console.Write("Senha: ");
-            string? password = Console.ReadLine();
-            //string? password = "qweASD369*";
+            Console.Write("Senha: ");            
+            string? password = login.LerSenha();
             Console.WriteLine("-----------------------------------\n\n");
-
 
             Console.WriteLine("Autenticando Usuário...");
 
@@ -59,6 +57,7 @@ namespace Kiper.MigracaoBiometria
                 Console.ReadKey();
                 Environment.Exit(0);
             }
+
             Console.WriteLine(texto);
             Console.WriteLine("Usuário Autenticado!\n\n");
 
@@ -81,12 +80,12 @@ namespace Kiper.MigracaoBiometria
             var content2 = await response2.Content.ReadAsStreamAsync();
             List<MapeamentoIDs>? responseContentDeserialized = await JsonSerializer.DeserializeAsync<List<MapeamentoIDs>>(content2);
 
-            //Dictionary<long, long>? idsDictionary = responseContentDeserialized?.ToDictionary(x => x.IdSigma, elementSelector: x => x.IdMonitoring);
+            Dictionary<long, long>? idsDictionary = responseContentDeserialized?.ToDictionary(x => x.IdSigma, elementSelector: x => x.IdMonitoring);
 
-            Dictionary<long, long>? idsDictionary = new Dictionary<long, long>();
-            idsDictionary.Add(218, 1);
-            idsDictionary.Add(533, 2);
-            idsDictionary.Add(30255, 3);
+            //Dictionary<long, long>? idsDictionary = new Dictionary<long, long>();
+            //idsDictionary.Add(533, 1);
+            //idsDictionary.Add(1071, 2);
+            //idsDictionary.Add(2941, 3);
 
 
             //(SIGMA, MONITORING)
@@ -191,22 +190,11 @@ namespace Kiper.MigracaoBiometria
                 {
                     db.filtrarTabela("user_fingerprint");
                     db.atualizarUserFingerprint(idsDictionary, dadosAPI.ListUserSuccess);
-
-                    //db.filtrarTabela("fp_terminal");
-                    //db.atualizarFpTerminal(dadosAPI.ListUserSuccess);
                 }
                 else if (res.Equals("2"))
                 {
                     db.filtrarTabela("user_fingerprint");
                     db.adicionarUserFingerprint(dadosAPI.ListUserSuccess);
-
-                    //List<long> listaSincronizacao = db.pegarListaSincronizacaoBiometria();
-                    //if (listaSincronizacao == null)
-                    //{
-                    //    Console.WriteLine("Lista de sincronizacao vazia...");
-                    //}
-                    //db.filtrarTabela("fp_terminal");
-                    //db.adicionarFpTerminal(listaSincronizacao, dadosAPI.ListUserSuccess);
                     
                 }
 
