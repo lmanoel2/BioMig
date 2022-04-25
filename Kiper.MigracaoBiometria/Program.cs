@@ -75,7 +75,7 @@ namespace Kiper.MigracaoBiometria
 
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", contentDeserialized.GetProperty("accessToken").ToString());
 
-            // 1843/18
+
             var response2 = await httpClient.GetAsync($"/migration/GetDwellersMapping/{idParceiro}/{idSigma}");
             var content2 = await response2.Content.ReadAsStreamAsync();
             List<MapeamentoIDs>? responseContentDeserialized = await JsonSerializer.DeserializeAsync<List<MapeamentoIDs>>(content2);
@@ -86,9 +86,7 @@ namespace Kiper.MigracaoBiometria
             //idsDictionary.Add(533, 1);
             //idsDictionary.Add(1071, 2);
             //idsDictionary.Add(2941, 3);
-
-
-            //(SIGMA, MONITORING)
+            
 
             //----------------------------------------------------------------------------------------------------------------------------------------
 
